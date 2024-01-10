@@ -23,9 +23,9 @@ public function show(){
 public function store(Request $request)
 {
     $image = $request->file('image'); 
-    $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-    Image::make($image)->resize(300, 300)->save('upload/Teams/'. $name_gen);
-
+   $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+   Image::make($image)->resize(300, 300)->save('upload/Teams/'. $name_gen);
+   // enctype="multipart/form-data"
     $save_url = 'upload/Teams/' . $name_gen;
 
     Team::insert([

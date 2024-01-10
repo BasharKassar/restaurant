@@ -16,10 +16,11 @@ class MealssImport implements ToModel
     {
         return Meal::firstOrCreate([
             'name'=>$row[1]],[
-            'image'=>$row[2],
-            'price'=>$row[3],
-            'description'=>$row[4],
-            'category'=>$row[5]
+            'category'=>$row[2],
+            'description'=>$row[3],
+            'price'=>$row[4],
+            'image'=>$row[5],
+
         ]);
     }
 }

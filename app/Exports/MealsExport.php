@@ -18,6 +18,6 @@ class MealsExport implements FromCollection,WithHeadings
     }
     public function headings(): array
     {
-        return ["id",'name','image','price','description','category'];
+        return ["id",'name','category','description','price','image'];
     }
 }

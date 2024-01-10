@@ -34,7 +34,7 @@
 
 <br>
 <div class="form-group">
-    <img id="showImage" src="{{ url('upload/no_image.jpg') }}" style="width: 100px; height: 100px;">
+    <img id="showImage" src="{{ url('upload/no_image.jpg') }}" style="width: 100px; height: 100px;" >
 </div>
 
 
