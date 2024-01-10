@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
+
 use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
@@ -20,28 +22,19 @@ public function show(){
 
 public function store(Request $request)
 {
-    //$request->validate(['team_name' => 'required|string|unique:categories|min:3|max:40',]);
-
-    Team::insert([
-        'team_name' => $request->team_name ,
-        'image'  =>'required|mimes:png,jpeg,jpg',
-
-     ]);
-     
-    $image = $request->file('image'); //$image = clinic.jpg
+    $image = $request->file('image'); 
     $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-    //$name_gen =4654654646 .jpg
-    Image::make($image)->resize(100, 100)->save('upload/Teams/'. $name_gen);
+    Image::make($image)->resize(300, 300)->save('upload/Teams/'. $name_gen);
 
     $save_url = 'upload/Teams/' . $name_gen;
 
-          
+    Team::insert([
+        'team_name' => $request->team_name ,
+        'image'  => $save_url,
+
+     ]);
+     
     return back()->with('message', 'تم إضافة شخص جديد!');
-
-
-
-
-
 
 }
 
@@ -54,6 +47,8 @@ public function delete($id)
 }
 
 
+
+
 public function update(Request $request)
 {
     $request->validate([
@@ -61,9 +56,8 @@ public function update(Request $request)
         'image' => 'required|mimes:png,jpeg,jpg',
 
     ]);
-    $image = $request->file('image'); //$image = clinic.jpg
+    $image = $request->file('image');
     $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-    //$name_gen =4654654646 .jpg
     Image::make($image)->resize(300, 300)->save('upload/Teams/'. $name_gen);
 
     $save_url = 'upload/Teams/' . $name_gen;

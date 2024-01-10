@@ -20,11 +20,18 @@
                          </div>
                          
                          <br>
+                         <div class="form-group">
+                             <label for="name">Work </label>
+                             <input type="text" class="form-control" name="work" placeholder="Work">
+                         </div>
+                         <br>
 
 <div class="form-group">
     <label>صورة </label>
     <input type="file" name="image" class="form-control" id="image">
 </div>
+
+
 <br>
 <div class="form-group">
     <img id="showImage" src="{{ url('upload/no_image.jpg') }}" style="width: 100px; height: 100px;">
@@ -59,6 +66,8 @@
                              <tr>
                                  <th scope="col">#</th>
                                  <th scope="col">اسم العضو</th>
+                                 <th scope="col">الصورة </th>
+                                 <th scope="col">العمل </th>
                                  <th scope="col">تعديل</th>
                                  <th scope="col">حذف</th>
 
@@ -151,7 +160,7 @@
 
         console.log(data);
         $('#id').val(data[1]);
-        $('#cat_name').val(data[2]);
+        $('#team_name').val(data[2]);
 
 
                 });
