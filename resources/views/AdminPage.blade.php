@@ -21,9 +21,12 @@
                                 style="margin-left:6px ;">إضافة وجبة </button></a>
                         <a style="float:right;" href="{{ route('meal.index') }}"><button class="bnt btn-info btn-default"
                                 style="margin-left:6px ;">عرض الوجبات</button></a>
-                                <a style="float:right;" href="{{ route('team.show') }}"><button class="bnt btn-success btn-default"
-                                style="margin-left:6px ;">اعضاء الفريق </button></a>
-                                
+                                <a style="float:right;" href="{{url('team')}}"><button class="bnt btn-info btn-default"
+                                style="margin-left:6px ;">عرض الفريق</button></a>
+                                <a style="float:right;" href="{{url('team/create')}}"><button class="bnt btn-info btn-default"
+                                style="margin-left:6px ;">إضافة الفريق</button></a>
+
+          
                                 <a style="float:right;" href="/import"><button class="bnt btn-info btn-default"
                                 style="margin-left:6px ;">                              استيراد وتصدير وجبة
 </button></a>

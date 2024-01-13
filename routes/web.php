@@ -28,12 +28,14 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['auth','admin']], function () {
+   //Route::post('/team/update{id}', [TeamController::class, 'update'])->name('team.update');
 
-    
-    Route::get('/team', [TeamController::class, 'show'])->name('team.show');
-    Route::post('/team/store', [TeamController::class, 'store'])->name('team.store');
-    Route::get('/team/{id}', [TeamController::class, 'delete'])->name('team.delete');
-    Route::post('/team/update', [TeamController::class, 'update'])->name('team.update');
+    Route::resource('team',TeamController::class);
+
+    //Route::get('/team', [TeamController::class, 'show'])->name('team.show');
+    //Route::post('/team/store', [TeamController::class, 'store'])->name('team.store');
+   //Route::get('/team/{id}', [TeamController::class, 'delete'])->name('team.delete');
+   // Route::post('/team/update', [TeamController::class, 'update'])->name('team.update');
 
     Route::get('/category', [CategoryController::class, 'show'])->name('cat.show');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('cat.store');

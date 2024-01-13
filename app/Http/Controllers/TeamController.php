@@ -2,84 +2,127 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Team;
-use Carbon\Carbon;
-use Intervention\Image\Facades\Image;
-
-use Illuminate\Support\Facades\DB;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use App\Traits\ImageTrait;
 class TeamController extends Controller
 {
     
+    use ImageTrait;
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $teams=Team::all();
+        return view('team.index',compact('teams'));
+    }
 
-public function show(){
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('team.create');
+    }
 
-    $teams=Team::paginate(4);
-   
-    return view('team.TeamPage' , compact('teams'));
-}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'name_team' => ['required','unique:teams'],
+            'work' => ['required','unique:teams'],
+            'image' => ['required'],
+        ])->validate();
+      
+        $team = new Team();
+        $team->name_team=$request->name_team;
+        $team->work=$request->work;
+        $team->image= $this->verifyAndUpload($request, 'image', 'teamImage');
+    
+        $team->save();
+        return redirect()->back()->with('success','تمت الاضافة بنجاح');
+    }
 
-public function store(Request $request)
-{
-    $image = $request->file('image'); 
-   $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-   Image::make($image)->resize(300, 300)->save('upload/Teams/'. $name_gen);
-   // enctype="multipart/form-data"
-    $save_url = 'upload/Teams/' . $name_gen;
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Team  $team
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Team $team)
+    {
+        //
+    }
 
-    Team::insert([
-        'team_name' => $request->team_name ,
-        'image'  => $save_url,
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Team  $team
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+            $team=Team::find($id);
+            return view('team.index',compact('team'));
+        }
+    
+    
 
-     ]);
-     
-    return back()->with('message', 'تم إضافة شخص جديد!');
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Team  $team
+     * @return \Illuminate\Http\Response
+     */
+    public function update($id,Request $request)
+    {
+            $team=Team::find($id);
+            $team->name_team=$request->name_team;
+            dd($team);
+            if (!empty ($request->file('image'))) {
+                if(\File::exists(public_path('teamImage/').$team->image)){
+                    \File::delete(public_path('teamImage/').$team->image);
+                }
+                $imageName = uniqid() . $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path('teamImage'), $imageName);
+                $team->image= $imageName;
+            }
+            $team->save();
+          
+            return redirect()->with('success','تم التعديل بنجاح');
+        
+    }
 
-}
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\team  $team
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    
+        {
+            $team=Team::find($id);
+            if(\File::exists(public_path('teamImage/').$team->image)){
+                \File::delete(public_path('teamImage/').$team->image);
+            }
+            $team->delete();
 
-
-
-public function delete($id)
-{
-    Team::find($id)->delete();
-    return redirect()->route('team.show')->with('message', 'تم حذف شخص بنجاح!');
-}
-
-
-
-
-public function update(Request $request)
-{
-    $request->validate([
-        'team_name' => 'required|string|unique:categories|min:3|max:40',
-        'image' => 'required|mimes:png,jpeg,jpg',
-
-    ]);
-    $image = $request->file('image');
-    $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-    Image::make($image)->resize(300, 300)->save('upload/Teams/'. $name_gen);
-
-    $save_url = 'upload/Teams/' . $name_gen;
-
-    Team::insert([
-        'team_name' => $request->name,
-        'image' => $save_url,
-    ]);
-
-    $id=$request->id;
-    Team::findOrFail($id)->update([
-        'team_name' => $request->team_name,
-        'image' => $request->image,
-
-    ]);
-    return redirect()->route('team.show')->with('message', 'تم تعديل معلومات بنجاح!');
-// end else
-}
-
-
-
-
-
-
+    
+            return redirect('team.index')
+                ->with('success','team delete successfully.');
+        }
+    
 }
