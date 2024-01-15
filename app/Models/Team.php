@@ -17,22 +17,9 @@ class Team extends Model
 {
     use HasFactory;
     
-    protected $fillable=['name_team','image'];
+    protected $fillable=['name_team','work','image'];
     public $timestamps=false;
 
-    public static function boot() {
 
-        parent::boot();
-
-        static::saving(function () {
-            \Cache::flush();
-
-        } );
-        static::updating(function () {
-            \Cache::flush();
-
-        } );
-        static::deleting(function(){\Cache::flush();});
-    }
 
 }

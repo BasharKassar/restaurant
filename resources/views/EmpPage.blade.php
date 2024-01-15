@@ -11,27 +11,6 @@
                         <li class="breadcrumb-item active " aria-current="page">طلبات الزبائن</li>
                     </ol>
                 </nav>
-
-                <div class="card">
-                    <div class="card-header">
-                        <a style="float:right;" href="{{ route('cat.show') }}"><button class="bnt btn-success btn-default"
-                                style="margin-left:6px ;">إضافة صنف جديد </button></a>
-
-                        <a style="float:right;" href="{{ route('meal.create') }}"><button class="bnt btn-danger btn-default"
-                                style="margin-left:6px ;">إضافة وجبة </button></a>
-                        <a style="float:right;" href="{{ route('meal.index') }}"><button class="bnt btn-info btn-default"
-                                style="margin-left:6px ;">عرض الوجبات</button></a>
-                                <a style="float:right;" href="{{url('team')}}"><button class="bnt btn-info btn-default"
-                                style="margin-left:6px ;">عرض الفريق</button></a>
-                                <a style="float:right;" href="{{url('team/create')}}"><button class="bnt btn-info btn-default"
-                                style="margin-left:6px ;">إضافة الفريق</button></a>
-
-          
-                                <a style="float:right;" href="/import"><button class="bnt btn-info btn-default"
-                                style="margin-left:6px ;">                              استيراد وتصدير وجبة
-</button></a>
-
-                    </div>
                     <div class="card-body text-center">
                         <table class="table table-bordered">
                             <thead>
@@ -47,9 +26,6 @@
                                     <th scope="col">سعر الوجبة($)</th>
                                     <th scope="col">المجموع ($)</th>
                                     <th scope="col">العنوان</th>
-                                    <th scope="col">الحالة </th>
-                                    <th scope="col">القبول</th>
-                                    <th scope="col">رفض الطلب</th>
                                     <th scope="col">إتمام الطلب</th>
                                 </tr>
                             </thead>
@@ -69,28 +45,7 @@
                                         <td>${{ $row->meal->price  }}</td>
                                         <td>${{ $row->meal->price  * $row->qty  }}</td>
                                         <td>{{ $row->address }}</td>
-
-
-
-
-                                        @if ($row->status == 'تتم مراجعة الطلب')
-
-                                            <td class="text-light bg-secondary">{{ $row->status }}</td>
-
-                                        @endif
-
-                                        @if ($row->status == 'رفض')
-
-                                            <td class="text-light bg-danger">{{ $row->status }}</td>
-
-                                        @endif
-
-                                        @if ($row->status == 'قبول')
-
-                                            <td class="text-light bg-primary">{{ $row->status }}</td>
-
-                                        @endif
-
+                
                                         @if ($row->status == 'إتمام')
 
                                             <td class="text-light bg-success">{{ $row->status }}</td>
@@ -101,17 +56,11 @@
                                         <form action="{{ route('order.status', $row->id) }}" method="post">
                                             @csrf
 
-
                                             <td>
-                                                <input name="status" type="submit" value="قبول"
-                                                    class="btn btn-primary btn-sm">
+                                                <input name="status" type="submit" value="إتمام"
+                                                    class="btn btn-success btn-sm">
                                             </td>
 
-                                            <td>
-                                                <input name="status" type="submit" value="رفض"
-                                                    class="btn btn-danger btn-sm">
-                                            </td>
-                                           
                                         </form>
 
 

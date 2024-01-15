@@ -74,12 +74,6 @@
                                         <option value="{{ $cat->cat_name }}">{{ $cat->cat_name }}</option>
                                     @endforeach
                                 </select>
-
-
-
-
-
-
                                 <br>
 
                                 <div class="form-group">

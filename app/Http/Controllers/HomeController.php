@@ -36,7 +36,19 @@ $order=Order::orderBy('id','DESC')->get();
 
 
             return view('AdminPage', compact('order'));
-        } else {
+        } else{
+        
+            $cats=Category::all();
+
+            if (Auth()->user()->is_admin == 2) {
+    
+    $order=Order::orderBy('id','DESC')->get();
+    
+    
+                return view('EmpPage', compact('order'));
+    
+            
+            }else{
             if (!$request->category) {
                 $cat1="الصفحة الرئيسية";
                 $meals=Meal::all();
@@ -47,7 +59,7 @@ $order=Order::orderBy('id','DESC')->get();
                 return view('UserPage', compact('cats', 'meals','cat1'));
             }
         }
-    }
+        }}
 
 
 

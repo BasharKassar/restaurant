@@ -6,10 +6,11 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\ImageTrait;
+
 class TeamController extends Controller
 {
-    
     use ImageTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -46,9 +47,9 @@ class TeamController extends Controller
         ])->validate();
       
         $team = new Team();
-        $team->name_team=$request->name_team;
-        $team->work=$request->work;
-        $team->image= $this->verifyAndUpload($request, 'image', 'teamImage');
+        $team->name_ar=$request->name_team;
+        $team->name_en=$request->work;
+        $team->image= $this->verifyAndUpload($request, 'image', 'Teamimage');
     
         $team->save();
         return redirect()->back()->with('success','تمت الاضافة بنجاح');
@@ -71,13 +72,10 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Team $team)
     {
-            $team=Team::find($id);
-            return view('team.index',compact('team'));
-        }
-    
-    
+        return view('team.edit',compact('team'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -86,43 +84,29 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function update($id,Request $request)
+    public function update(Request $request, Team $team)
     {
-            $team=Team::find($id);
-            $team->name_team=$request->name_team;
-            dd($team);
-            if (!empty ($request->file('image'))) {
-                if(\File::exists(public_path('teamImage/').$team->image)){
-                    \File::delete(public_path('teamImage/').$team->image);
-                }
-                $imageName = uniqid() . $request->file('image')->getClientOriginalName();
-                $request->file('image')->move(public_path('teamImage'), $imageName);
-                $team->image= $imageName;
+        $team->update(['name_team'=>$request->name_team,'work'=>$request->work]);
+
+        if (!empty ($request->file('image'))) {
+            if(\File::exists(public_path('Teamimage/').$brand->image)){
+                \File::delete(public_path('Teamimage/').$brand->image);
             }
-            $team->save();
-          
-            return redirect()->with('success','تم التعديل بنجاح');
-        
+            $imageName=$this->verifyAndUpload($request, 'image', 'Teamimage');
+            $team->update(['image'=> $imageName]);
+        }
+        return redirect()->back()->with('success','تم التعديل بنجاح');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\team  $team
+     * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    
-        {
-            $team=Team::find($id);
-            if(\File::exists(public_path('teamImage/').$team->image)){
-                \File::delete(public_path('teamImage/').$team->image);
-            }
-            $team->delete();
-
-    
-            return redirect('team.index')
-                ->with('success','team delete successfully.');
-        }
-    
+    public function destroy(Team $team)
+    {
+        //
+    }
 }

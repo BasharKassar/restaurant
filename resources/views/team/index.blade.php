@@ -40,7 +40,7 @@
                                         <img width="50" src='{{asset("teamImage/{$team->image}")}}'>
                                     </td>
                                     <td> 
-                                        <a href="{{url('team/create')}}" 
+                                    <a href='{{url("team/{$team->id}/edit")}}'
                                         class="btn btn-success">تعديل</a>
                                     </td>
                                     <td>
