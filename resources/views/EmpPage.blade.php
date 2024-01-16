@@ -31,8 +31,12 @@
                             </thead>
                            <tbody>
 
-
                                 @foreach ($order as $row)
+                                
+                           @if ($row->status == 'قبول')
+
+
+
                                     <tr>
                                         <td>{{ $row->user->name}}</td>
                                         <td>{{ $row->user->email  }}</td>
@@ -46,12 +50,7 @@
                                         <td>${{ $row->meal->price  * $row->qty  }}</td>
                                         <td>{{ $row->address }}</td>
                 
-                                        @if ($row->status == 'إتمام')
-
-                                            <td class="text-light bg-success">{{ $row->status }}</td>
-
-                                        @endif
-
+                                        @if ($row->status == 'قبول')
 
                                         <form action="{{ route('order.status', $row->id) }}" method="post">
                                             @csrf
@@ -62,14 +61,17 @@
                                             </td>
 
                                         </form>
-
+                                       
+                                  
+                                @endif
 
 
 
 
                                     </tr>
-                                @endforeach
+                                    @endif
 
+                                @endforeach
 
                             </tbody>
                         </table>

@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth','admin']], function () {
 });
 
 Route::get('/meal/show/{id}', [MealController::class, 'show_details'])->name('meal_deatails');
-//Route::post('/search', [HomeController::class, 'search'])->name('search.meal')->middleware('auth');   
+Route::post('/search', [HomeController::class, 'search'])->name('search.meal')->middleware('auth');   
 
 Route::post('/order/store', [HomeController::class, 'orderStore'])->name('order.store')->middleware('auth');   
 Route::get('/order/show', [HomeController::class, 'show_order'])->name('order.show')->middleware('auth');

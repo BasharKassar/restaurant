@@ -50,7 +50,6 @@
                                     <th scope="col">الحالة </th>
                                     <th scope="col">القبول</th>
                                     <th scope="col">رفض الطلب</th>
-                                    <th scope="col">إتمام الطلب</th>
                                 </tr>
                             </thead>
                            <tbody>
@@ -69,9 +68,6 @@
                                         <td>${{ $row->meal->price  }}</td>
                                         <td>${{ $row->meal->price  * $row->qty  }}</td>
                                         <td>{{ $row->address }}</td>
-
-
-
 
                                         @if ($row->status == 'تتم مراجعة الطلب')
 

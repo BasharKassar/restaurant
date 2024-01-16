@@ -184,72 +184,40 @@
         <!-- Contact End -->
 
         <!-- Team Start -->
-        <div class="container-xxl pt-10 pb-3">
-            <div class="container">
+        
+        <div class="col-md-12">
+                <div class="card">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h2 class="section-title ff-secondary text-center textcenter mb-5">اعضاء الفريق </h2>
-
+                    <h3 class="section-title ff-secondary text-center textcenter">   الفريق <i class="fa fa-hand-o-left" aria-hidden="true"></i></h3>
+                    
                 </div>
-                <div class="row g-4">
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item text-center rounded overflow-hidden">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid"src="{{ url('/images/team-1.jpg') }}">
+                    <div class="card-body">
+                        <div class="row g-4">
+                            @forelse ($teams as $team )
+                                <div class="col-md-3 mt-2 text-center" style="border: 1px solid rgb(149, 212, 159) ;">
+                                <div class="rounded-circle overflow-hidden m-3">
+                                <img width="100" src='{{asset("teamImage/{$team->image}")}}'>
                             </div>
-                            <h5 class="mb-0">bashar4</h5>
-                            <small>الشيف التنفيذي</small>
-                            <div class="d-flex justify-content-center mt-3">
+                                  
+                                   <br> <strong>{{ $team->name_team }}</strong>
+                                    <p>{{ $team->work }}</p>
+                                    <div class="d-flex justify-content-center mt-2">
                                 <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-instagram"></i></a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="team-item text-center rounded overflow-hidden">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="{{ url('/images/team-2.jpg') }}" alt="">
-                            </div>
-                            <h5 class="mb-0">bashar3</h5>
-                            <small>رىيس الطهاة</small>
-                            <div class="d-flex justify-content-center mt-3">
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="team-item text-center rounded overflow-hidden">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="{{ url('/images/team-3.jpg') }}" alt="">
-                            </div>
-                            <h5 class="mb-0"> bashar2</h5>
-                            <small>مساعد رىيس الطهاة</small>
-                            <div class="d-flex justify-content-center mt-3">
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="team-item text-center rounded overflow-hidden">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="{{ url('/images/team-4.jpg') }}" alt="">
-                            </div>
-                            <h5 class="mb-0"> bashar1</h5>
-                            <small>رىيس قسم</small>
-                            <div class="d-flex justify-content-center mt-3">
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-success mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
+                                </div>
+
+                       @empty
+                                <p>لايوجد اعضاء</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
         <!-- Team End -->
 
 

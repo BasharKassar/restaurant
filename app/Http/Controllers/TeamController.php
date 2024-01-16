@@ -47,8 +47,8 @@ class TeamController extends Controller
         ])->validate();
       
         $team = new Team();
-        $team->name_ar=$request->name_team;
-        $team->name_en=$request->work;
+        $team->name_team=$request->name_team;
+        $team->work=$request->work;
         $team->image= $this->verifyAndUpload($request, 'image', 'Teamimage');
     
         $team->save();
@@ -74,7 +74,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        return view('team.edit',compact('team'));
+              return view('team.edit',compact('team'));
     }
 
     /**
@@ -86,11 +86,12 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
+       
         $team->update(['name_team'=>$request->name_team,'work'=>$request->work]);
 
         if (!empty ($request->file('image'))) {
-            if(\File::exists(public_path('Teamimage/').$brand->image)){
-                \File::delete(public_path('Teamimage/').$brand->image);
+            if(\File::exists(public_path('Teamimage/').$team->image)){
+                \File::delete(public_path('Teamimage/').$team->image);
             }
             $imageName=$this->verifyAndUpload($request, 'image', 'Teamimage');
             $team->update(['image'=> $imageName]);
@@ -105,8 +106,14 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy(Request $request)
     {
-        //
+        $team=Team::find($request->id);
+        if(\File::exists(public_path('teamImage/').$team->image)){
+            \File::delete(public_path('teamImage/').$team->image);
+        }
+        $team->delete();
+dd($team);
+        return redirect()->back()->with('success','Team delete successfully.');
     }
 }

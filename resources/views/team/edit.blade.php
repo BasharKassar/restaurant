@@ -8,7 +8,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form role="form" method="POST" aaction='{{url("team/{$team->id}")}}'  enctype="multipart/form-data">
+    <form role="form" method="POST" action='{{url("team/{$team->id}")}}'  enctype="multipart/form-data">
       @csrf
       @method('PUT')
       @if(session()->has('success'))
@@ -38,13 +38,13 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1">name_team </label>
-              <input type="text" class="form-control" id="exampleInputEmail1" value="{{$team->name_team}}" name="name_ar" placeholder="Enter ">
+              <input type="text" class="form-control" id="exampleInputEmail1" value="{{$team->name_team}}" name="name_team" placeholder="Enter ">
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1">work</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" value="{{$team->work}}" name="name_en" placeholder="Enter ">
+              <input type="text" class="form-control" id="exampleInputEmail1" value="{{$team->work}}" name="work" placeholder="Enter ">
             </div>
           </div>
           <div class="col-md-6">

@@ -16,6 +16,21 @@
                                 وجبة</a>
                             <a href="/home" class="list-group-item list-group-item-action">طلبات المستخدمين</a>
 
+              
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="username">{{Auth::user()->name}}</span>
+                        </a>
+                        
+                    
+                    </li>
+                    <li class="sb-toggle-left">
+                        <i class="fa  fa-align-right"></i>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!--search & user info end-->
                         </ul>
                     </div>
                 </div>
