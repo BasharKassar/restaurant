@@ -44,7 +44,7 @@
                                         class="btn btn-success">تعديل</a>
                                     </td>
                                     <td>
-                                        <form method="post" action='{{url("team-destroy/$team->id")}}'>
+                                        <form method="post" action='{{url("team/{$team->id}")}}'>
                                             @method('delete')
                                             @csrf
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>

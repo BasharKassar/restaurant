@@ -13,18 +13,18 @@ public function index(Request $request){
 
     $cats=Category::all();
 
-   
+    $teams=Team::all();   
+
         if (!$request->category) {
           
             $cat1="الصفحة الرئيسية";
             $meals=Meal::all();  
-            $teams=Team::all();   
  
             return view('visitorPage', compact('cats', 'meals','cat1','teams'));
         } else {
             $cat1=$request->category;
             $meals=Meal::where('category', $request->category)->get();         
-            return view('visitorPage', compact('cats', 'meals','cat1'));
+            return view('visitorPage', compact('cats', 'meals','cat1','teams'));
         
     }
 

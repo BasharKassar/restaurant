@@ -106,14 +106,16 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+  
+    public function destroy($id)
     {
-        $team=Team::find($request->id);
-        if(\File::exists(public_path('teamImage/').$team->image)){
-            \File::delete(public_path('teamImage/').$team->image);
+        $team=Team::find($id);
+        if(\File::exists(public_path('Teamimage/').$team->image)){
+            \File::delete(public_path('Teamimage/').$team->image);
         }
         $team->delete();
-dd($team);
-        return redirect()->back()->with('success','Team delete successfully.');
+
+        return redirect()->back()
+            ->with('success','team member delete successfully.');
     }
 }

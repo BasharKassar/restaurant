@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Meal;
 use App\Models\Order;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -52,10 +53,11 @@ $order=Order::orderBy('id','DESC')->get();
             if (!$request->category) {
                 $cat1="الصفحة الرئيسية";
                 $meals=Meal::all();
+
                 return view('UserPage', compact('cats', 'meals','cat1'));
             } else {
                 $cat1=$request->category;
-                $meals=Meal::where('category', $request->category)->get();
+               $meals=Meal::where('category', $request->category)->get();
                 return view('UserPage', compact('cats', 'meals','cat1'));
             }
         }

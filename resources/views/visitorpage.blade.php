@@ -66,7 +66,7 @@
                     <div class="card-header text-center">القائمة</div>
                     <div class="card-body text-right">
                         <form action="" method="get">
-                            <a class="list-group-item list-group-item-action"  href="/home">الصفحة الرئيسية</a>
+                            <a class="list-group-item list-group-item-action"  href="/">الصفحة الرئيسية</a>
                             @foreach ($cats as $row)
                                 <input type="submit" value="{{ $row->cat_name }}" name="category"
                                     class="list-group-item list-group-item-action  " >
@@ -193,7 +193,7 @@
                 </div>
                     <div class="card-body">
                         <div class="row g-4">
-                            @forelse ($teams as $team )
+                            @foreach($teams as $team )
                                 <div class="col-md-3 mt-2 text-center" style="border: 1px solid rgb(149, 212, 159) ;">
                                 <div class="rounded-circle overflow-hidden m-3">
                                 <img width="100" src='{{asset("teamImage/{$team->image}")}}'>
@@ -208,14 +208,14 @@
                             </div>
                                 </div>
 
-                       @empty
-                                <p>لايوجد اعضاء</p>
-                            @endforelse
+                     
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
         <!-- Team End -->
