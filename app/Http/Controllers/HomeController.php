@@ -44,11 +44,7 @@ $order=Order::orderBy('id','DESC')->get();
             if (Auth()->user()->is_admin == 2) {
     
     $order=Order::orderBy('id','DESC')->get();
-    
-    
                 return view('EmpPage', compact('order'));
-    
-            
             }else{
             if (!$request->category) {
                 $cat1="الصفحة الرئيسية";
