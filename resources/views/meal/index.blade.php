@@ -56,10 +56,10 @@
                             <tbody>
 
                               @if (count($meals) > 0)
-                                @foreach ($meals as $row)
+                                @foreach ($meals as $key=> $row)
 
                                     <tr>
-                                        <th scope="row">{{$row->id  }}</th>
+                                        <th>{{$meals->firstitem()+$loop->index }}</th>
                                         <td><img src="{{asset($row->image) }}" width="80"></td>
                                         <td>{{$row->name  }}</td>
                                         <td>{{$row->description }}</td>

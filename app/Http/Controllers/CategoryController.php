@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
 public function show(){
 
-    $cats=Category::paginate(4);
+    $cats=Category::paginate(3);
    
     return view('category.CategoryPage' , compact('cats'));
 }

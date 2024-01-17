@@ -57,7 +57,7 @@
                         <tr>
 
 
-                            <td scope="row" style="width: 12%">{{ $key=$key+1 }}</th>
+                            <td scope="row" style="width: 12%">{{$cats->firstitem()+$loop->index }}</th>
                                 <td hidden >{{ $row->id}}</td>
                             <td>{{ $row->cat_name }}</td>
 
@@ -74,8 +74,9 @@
 
                       </tbody>
                    </table>
+                   {{ $cats->links() }}
 
-
+       
                  </div>
 
              </div>
