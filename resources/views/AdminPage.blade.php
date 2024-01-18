@@ -32,6 +32,15 @@
 </button></a>
 
                     </div>
+                    <div>
+<p>الزبون الاكثر طلبا
+:{{$orders->user->name}}
+
+</p>
+<p>الوجبة الاكثر طلبا
+:{{$porders->meal->name}}
+
+</p>             </div>
                     <div class="card-body text-center">
                         <table class="table table-bordered">
                             <thead>

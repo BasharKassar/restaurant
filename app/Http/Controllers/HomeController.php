@@ -6,8 +6,11 @@ use App\Models\Category;
 use App\Models\Meal;
 use App\Models\Order;
 use App\Models\Team;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -34,9 +37,14 @@ class HomeController extends Controller
         if (Auth()->user()->is_admin == 1) {
 
 $order=Order::orderBy('id','DESC')->get();
+  $orders=Order::with('user')->addSelect(DB::raw('SUM(qty) as purchase_total, user_id'))
+    ->groupBy('user_id')
+    ->orderBy('purchase_total', 'DESC')->first();
+    $porders=Order::with('user')->addSelect(DB::raw('SUM(qty) as product_count, meal_id'))
+    ->groupBy('meal_id')
+    ->orderBy('product_count', 'DESC')->first();
 
-
-            return view('AdminPage', compact('order'));
+            return view('AdminPage', compact('order','orders','porders'));
         } else{
         
             $cats=Category::all();
@@ -99,7 +107,8 @@ public function orderStore(Request $request){
 public function show_order(){
 
     $order=Order::where('user_id',Auth::user()->id)->get();
-
+  
+    
     return view('order.show_order',compact('order'));
 
 
