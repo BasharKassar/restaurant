@@ -3,15 +3,10 @@
 @section('content')
 
 
-    <div class="container p-5" dir="rtl">
+    <div class="container pt-5" dir="rtl">
         <div class="row">
             <div class="col-md-12">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb bg-warning">
-                        <li class="breadcrumb-item active " aria-current="page">طلبات الزبائن</li>
-                    </ol>
-                </nav>
-
+          
                 <div class="card">
                     <div class="card-header">
                         <a style="float:right;" href="{{ route('cat.show') }}"><button class="bnt btn-success btn-default"
@@ -33,6 +28,13 @@
 
                     </div>
                     <div>
+                    <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-warning">
+                        <li class="breadcrumb-item active " aria-current="page">طلبات الزبائن</li>
+                    </ol>
+                </nav>
+                </div>
+                    <div>
 <p class="bnt btn-info btn-default"
                             >الزبون الاكثر طلبا
 :{{$orders->user->name}}
@@ -42,7 +44,10 @@
                             >الوجبة الاكثر طلبا
 :{{$porders->meal->name}}
 
-</p>             </div>
+</p>             
+</div>
+
+
                     <div class="card-body text-center">
                         <table class="table table-bordered">
                             <thead>

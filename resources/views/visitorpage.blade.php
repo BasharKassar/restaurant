@@ -11,7 +11,7 @@
                             <img class="img-fluid " src="{{ url('/images/hero.png') }}" alt="">
                         </div>
                         <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="display-3 text-white animated slideInLeft"> استمتع<br>بوجبتنا اللذيذة </h1>
+                            <h1 class="display-3 text-white animated slideInLeft"> استمتع بوجبتنا اللذيذة </h1>
 
                         </div>
                     </div>
@@ -258,7 +258,7 @@
     <h5 class="text-uppercase text-center text-success">وجبتي</h5>
 
     <p>
-    موقع وجبتي     </p>
+     موقع وجبتي يقدم افضل الوجبات في اقصر وقت ممكن    </p>
   </div>
 
 </div>

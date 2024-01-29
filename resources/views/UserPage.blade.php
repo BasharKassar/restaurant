@@ -116,7 +116,8 @@
     <h5 class="text-uppercase text-center text-success">وجبتي</h5>
 
     <p>
-    موقع وجبتي     </p>
+    موقع وجبتي يقدم افضل الوجبات في اقصر وقت ممكن    </p>
+
   </div>
 
 </div>
