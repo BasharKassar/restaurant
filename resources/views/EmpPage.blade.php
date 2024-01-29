@@ -3,6 +3,7 @@
 @section('content')
 
 
+
     <div class="container p-5" dir="rtl">
         <div class="row">
             <div class="col-md-12">
@@ -10,6 +11,7 @@
                     <ol class="breadcrumb bg-warning">
                         <li class="breadcrumb-item active " aria-current="page">طلبات الزبائن</li>
                     </ol>
+                   
                 </nav>
                     <div class="card-body text-center">
                         <table class="table table-bordered">
@@ -80,7 +82,28 @@
             </div>
         </div>
     </div>
+    <div class="container p-5" dir="rtl">
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-warning">
+                        <li class="breadcrumb-item active " aria-current="page">طلباتي </li>
+                    </ol>
+                   
+                </nav>
+                <div class="card-body text-right">
+                        <form action="" method="get">
+                            <a class="list-group-item list-group-item-action"  href="/order/show">اظهار الطلبات السابقة</a>
+                            
+                   
+          
 
+                        </form>
+                       
+                    </div>
+                    </div>
+                    </div>
+                    </div>
 
 
     <div class="hight"></div>

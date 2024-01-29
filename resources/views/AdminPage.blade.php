@@ -33,11 +33,13 @@
 
                     </div>
                     <div>
-<p>الزبون الاكثر طلبا
+<p class="bnt btn-info btn-default"
+                            >الزبون الاكثر طلبا
 :{{$orders->user->name}}
 
 </p>
-<p>الوجبة الاكثر طلبا
+<p class="bnt btn-danger btn-default"
+                            >الوجبة الاكثر طلبا
 :{{$porders->meal->name}}
 
 </p>             </div>
